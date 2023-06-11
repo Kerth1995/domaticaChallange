@@ -29,12 +29,12 @@ export class LoginComponent implements OnInit {
     let accesos = {
       username: this.dataAccess.controls.username.value,
       password: this.dataAccess.controls.password.value,
-      ipAdress: '192.165.0.1'
+      ipAddress: '192.165.0.1'
     }
     //console.log(accesos);
     this.accessService.login(accesos).subscribe(rpta => {
       console.log(rpta);
-      
+
     });
   }
 

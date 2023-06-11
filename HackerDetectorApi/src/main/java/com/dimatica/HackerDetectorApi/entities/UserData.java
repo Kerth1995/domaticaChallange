@@ -1,8 +1,6 @@
 package com.dimatica.HackerDetectorApi.entities;
 
-import org.springframework.stereotype.Component;
-
-public class UserController {
+public class UserData {
 
     //@Value("${login_username}")
     private String username;
@@ -12,7 +10,7 @@ public class UserController {
 
     private String ipAddress;
 
-    public UserController(String username, String password, String ipAddress) {
+    public UserData(String username, String password, String ipAddress) {
         this.username = username;
         this.password = password;
         this.ipAddress = ipAddress;

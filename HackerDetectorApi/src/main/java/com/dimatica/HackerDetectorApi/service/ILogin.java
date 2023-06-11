@@ -1,9 +1,7 @@
 package com.dimatica.HackerDetectorApi.service;
 
-import com.dimatica.HackerDetectorApi.entities.User;
-
-import java.util.List;
+import com.dimatica.HackerDetectorApi.entities.UserData;
 
 public interface ILogin {
-    public List<User> login(String username, String password);
+    public String login(UserData userData);
 }

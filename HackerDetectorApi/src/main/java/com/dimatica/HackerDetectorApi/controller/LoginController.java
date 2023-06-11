@@ -1,8 +1,7 @@
 package com.dimatica.HackerDetectorApi.controller;
 
 
-import com.dimatica.HackerDetectorApi.entities.UserController;
-import com.dimatica.HackerDetectorApi.entities.User;
+import com.dimatica.HackerDetectorApi.entities.UserData;
 import com.dimatica.HackerDetectorApi.service.ILogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("login")
 @CrossOrigin(origins = "http://localhost:4200/")
-public class Login {
+public class LoginController {
 
     @Autowired
     ILogin loginService;
@@ -27,13 +26,14 @@ public class Login {
     Map<String, String> response = new HashMap<String, String>();
 
     @PostMapping(path = "/")
-    public ResponseEntity login(@RequestBody UserController user){
+    public ResponseEntity login(@RequestBody UserData user){
 
-        if(loginService.login(user.getUsername(), user.getPassword()).size()>0){
-            response.put("token", "Hola");
-            return ResponseEntity.ok(response);
+        if(loginService.login(user) != null){
+            response.put("token", loginService.login(user));
+            return ResponseEntity.status(HttpStatus.OK).body(response);
         }
-        response.put("error", "Not Found");
+
+        response.put("error", HttpStatus.NOT_FOUND.toString());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 }
