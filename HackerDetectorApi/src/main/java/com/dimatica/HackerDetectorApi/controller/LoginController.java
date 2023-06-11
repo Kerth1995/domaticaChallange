@@ -28,8 +28,9 @@ public class LoginController {
     @PostMapping(path = "/")
     public ResponseEntity login(@RequestBody UserData user){
 
-        if(loginService.login(user) != null){
-            response.put("token", loginService.login(user));
+        String token = loginService.login(user);
+        if( token!= null){
+            response.put("token", token);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         }
 
